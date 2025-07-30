@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Switch, Table, Tag } from "antd";
+import { Button, Switch, Table, Tag } from "antd";
 
 const { Column } = Table;
 
@@ -109,93 +109,117 @@ const data: DataType[] = [
 ];
 
 const usersPage = () => (
-  <Table<DataType>
-    dataSource={data}
-    className="h-full"
-  >
-    <Column
-      title="Email"
-      dataIndex="email"
-      key="email"
-    />
-    <Column
-      title="Display name"
-      dataIndex="display_name"
-      key="display_name"
-    />
-    <Column
-      title="Is active"
-      dataIndex="is_active"
-      key="is_active"
-      render={(is_active: boolean) => (
-        <Tag
+  <div>
+    <div className="flex justify-between items-center">
+      <div>
+        <h1
           style={{
-            backgroundColor: is_active
-              ? "var(--color-green-500)"
-              : "var(--color-myWhite)",
-            color: is_active ? "var(--color-white)" : "var(--color-red-500)",
-            border: "none",
-            fontWeight: is_active ? 600 : 500,
+            fontSize: "2.5rem",
+            fontWeight: "bold",
+            color: "var(--color-myWhite)",
+            marginLeft: "0",
           }}
         >
-          {is_active ? "Active" : "Inactive"}
-        </Tag>
-      )}
-    />
-    <Column
-      title="List of vendors"
-      dataIndex="managed_vendors"
-      key="managed_vendors"
-      render={(vendors: string[]) => (
-        <div style={{ maxWidth: 500 }}>
-          {vendors.map((vendor, index) => (
-            <Tag
-              key={index}
-              style={{
-                backgroundColor: "var(--color-myViolet)",
-                color: "white",
-                border: "none",
-                marginBottom: 4,
-                marginRight: 4,
-                fontWeight: 600,
-              }}
-            >
-              {vendor}
-            </Tag>
-          ))}
-        </div>
-      )}
-    />
-    <Column
-      title="Created at"
-      dataIndex="created_at"
-      key="created_at"
-      render={(date: string) => (
-        <span style={{ color: "var(--color-myWhite)" }}>
-          {new Date(date).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-        </span>
-      )}
-    />
-    <Column
-      title="Action"
-      key="action"
-      render={(record: DataType) => (
-        <Switch
-          checked={record.is_active}
-          onChange={(checked) => {
-            console.log(
-              `${checked ? "Activate" : "Deactivate"} user:`,
-              record.display_name
-            );
-          }}
-        />
-      )}
-    />
-  </Table>
+          Users
+        </h1>
+        <h6
+          style={{ marginBottom: "2rem" }}
+          className="text-myWhite"
+        >
+          Manage and monitor users&apos;s actions.
+        </h6>
+      </div>
+
+      <Button disabled>Add user</Button>
+    </div>
+    <Table<DataType>
+      dataSource={data}
+      className="h-full"
+    >
+      <Column
+        title="Email"
+        dataIndex="email"
+        key="email"
+      />
+      <Column
+        title="Display name"
+        dataIndex="display_name"
+        key="display_name"
+      />
+      <Column
+        title="Is active"
+        dataIndex="is_active"
+        key="is_active"
+        render={(is_active: boolean) => (
+          <Tag
+            style={{
+              backgroundColor: is_active
+                ? "var(--color-green-500)"
+                : "var(--color-myWhite)",
+              color: is_active ? "var(--color-white)" : "var(--color-red-500)",
+              border: "none",
+              fontWeight: is_active ? 600 : 500,
+            }}
+          >
+            {is_active ? "Active" : "Inactive"}
+          </Tag>
+        )}
+      />
+      <Column
+        title="List of vendors"
+        dataIndex="managed_vendors"
+        key="managed_vendors"
+        render={(vendors: string[]) => (
+          <div style={{ maxWidth: 500 }}>
+            {vendors.map((vendor, index) => (
+              <Tag
+                key={index}
+                style={{
+                  backgroundColor: "var(--color-myViolet)",
+                  color: "white",
+                  border: "none",
+                  marginBottom: 4,
+                  marginRight: 4,
+                  fontWeight: 600,
+                }}
+              >
+                {vendor}
+              </Tag>
+            ))}
+          </div>
+        )}
+      />
+      <Column
+        title="Created at"
+        dataIndex="created_at"
+        key="created_at"
+        render={(date: string) => (
+          <span style={{ color: "var(--color-myWhite)" }}>
+            {new Date(date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </span>
+        )}
+      />
+      <Column
+        title="Action"
+        key="action"
+        render={(record: DataType) => (
+          <Switch
+            checked={record.is_active}
+            onChange={(checked) => {
+              console.log(
+                `${checked ? "Activate" : "Deactivate"} user:`,
+                record.display_name
+              );
+            }}
+          />
+        )}
+      />
+    </Table>
+  </div>
 );
 
 export default usersPage;

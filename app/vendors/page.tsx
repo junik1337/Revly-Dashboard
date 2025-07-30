@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Table } from "antd";
+import { Button, Table } from "antd";
 
 const { Column } = Table;
 
@@ -98,55 +98,79 @@ const data: DataType[] = [
 ];
 
 const vendorsPage = () => (
-  <Table<DataType>
-    dataSource={data}
-    className="max-h-[100vh]"
-    scroll={{ y: "100vh" }}
-  >
-    <Column
-      title="Name"
-      dataIndex="name"
-      key="name"
-    />
-    <Column
-      title="Coordinates"
-      key="coordinates"
-      render={(record: DataType) => (
-        <a
-          href={`https://www.google.com/maps?q=${record.coordinates}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: "var(--color-myViolet)" }}
+  <div>
+    <div className="flex justify-between items-center">
+      <div>
+        <h1
+          style={{
+            fontSize: "2.5rem",
+            fontWeight: "bold",
+            color: "var(--color-myWhite)",
+            marginLeft: "0",
+          }}
         >
-          {record.coordinates}
-        </a>
-      )}
-    />
-    <Column
-      title="Chain id"
-      dataIndex="chain_id"
-      key="chain_id"
-    />
-    <Column
-      title="Chain name"
-      dataIndex="chain_name"
-      key="chain_name"
-    />
-    <Column
-      title="Created at"
-      dataIndex="created_at"
-      key="created_at"
-      render={(date: string) => (
-        <span style={{ color: "var(--color-myWhite)" }}>
-          {new Date(date).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          })}
-        </span>
-      )}
-    />
-  </Table>
+          Vendors
+        </h1>
+        <h6
+          style={{ marginBottom: "2rem" }}
+          className="text-myWhite"
+        >
+          Manage restaurant locations and their details.
+        </h6>
+      </div>
+
+      <Button disabled>Add vendor</Button>
+    </div>
+    <Table<DataType>
+      dataSource={data}
+      className="h-full"
+      scroll={{ y: "100vh" }}
+    >
+      <Column
+        title="Name"
+        dataIndex="name"
+        key="name"
+      />
+      <Column
+        title="Coordinates"
+        key="coordinates"
+        render={(record: DataType) => (
+          <a
+            href={`https://www.google.com/maps?q=${record.coordinates}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: "var(--color-myViolet)" }}
+          >
+            {record.coordinates}
+          </a>
+        )}
+      />
+      <Column
+        title="Chain id"
+        dataIndex="chain_id"
+        key="chain_id"
+      />
+      <Column
+        title="Chain name"
+        dataIndex="chain_name"
+        key="chain_name"
+      />
+      <Column
+        title="Created at"
+        dataIndex="created_at"
+        key="created_at"
+        render={(date: string) => (
+          <span style={{ color: "var(--color-myWhite)" }}>
+            {new Date(date).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </span>
+        )}
+      />
+    </Table>
+  </div>
 );
 
 export default vendorsPage;

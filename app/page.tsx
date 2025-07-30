@@ -11,7 +11,7 @@ export default function Home() {
   }, [router]);
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-full">
       <div className="mx-auto w-[600px] bg-myBlack rounded-xl overflow-hidden drop-shadow-2xl">
         <div className="bg-myGrey flex items-center p-[20px] text-white relative rounded-t-xl">
           <div className="flex absolute left-3 space-x-2">

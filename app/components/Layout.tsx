@@ -10,6 +10,7 @@ import {
 import { Button, ConfigProvider, Layout, Menu } from "antd";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 const { Header, Sider, Content } = Layout;
 
@@ -58,6 +59,14 @@ const AppLayoutProvider: React.FC<{ children: React.ReactNode }> = ({
             colorText: "var(--color-myWhite)",
             colorBorder: "var(--color-myBlack)",
           },
+          Button: {
+            colorPrimary: "var(--color-myViolet)",
+            colorPrimaryHover: "var(--color-myViolet)",
+            colorPrimaryActive: "var(--color-myViolet)",
+            colorBgContainer: "var(--color-myWhite)",
+            colorText: "var(--color-myBlack)",
+            colorBorder: "var(--color-myBlack)",
+          },
         },
       }}
     >
@@ -68,13 +77,19 @@ const AppLayoutProvider: React.FC<{ children: React.ReactNode }> = ({
           collapsed={collapsed}
           style={{ backgroundColor: "var(--color-myGrey)" }}
         >
-          <Image
-            src="https://cdn.prod.website-files.com/66be4630db3d6b1bfd791b23/66be5673f24147259459348a_Logo.svg"
-            width={70}
-            height={70}
-            alt="logo"
-            style={{ margin: "10px", marginLeft: "10px", marginBottom: "50px" }}
-          />
+          <Link href="/">
+            <Image
+              src="https://cdn.prod.website-files.com/66be4630db3d6b1bfd791b23/66be5673f24147259459348a_Logo.svg"
+              width={70}
+              height={70}
+              alt="logo"
+              style={{
+                margin: "10px",
+                marginLeft: "10px",
+                marginBottom: "50px",
+              }}
+            />
+          </Link>
 
           <Menu
             style={{
