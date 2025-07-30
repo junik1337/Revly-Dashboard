@@ -100,9 +100,8 @@ const data: DataType[] = [
 const vendorsPage = () => (
   <Table<DataType>
     dataSource={data}
-    className="max-h-[40vh]"
-    scroll={{ y: "40vh" }}
-    pagination={false}
+    className="max-h-[100vh]"
+    scroll={{ y: "100vh" }}
   >
     <Column
       title="Name"

@@ -51,6 +51,13 @@ const AppLayoutProvider: React.FC<{ children: React.ReactNode }> = ({
             colorPrimary: "var(--color-myViolet)",
             colorPrimaryHover: "var(--color-myViolet)",
           },
+          Pagination: {
+            colorPrimary: "var(--color-myViolet)",
+            colorPrimaryHover: "var(--color-myViolet)",
+            colorBgContainer: "var(--color-myWhite)",
+            colorText: "var(--color-myWhite)",
+            colorBorder: "var(--color-myBlack)",
+          },
         },
       }}
     >

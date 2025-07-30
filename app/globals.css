@@ -7,6 +7,11 @@
   --color-myWhite: #eeeeee;
 }
 
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
 body {
   @apply w-screen h-screen;
 }
