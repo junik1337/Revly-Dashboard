@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+  --color-myViolet: #906bff;
+  --color-myBlack: #222831;
+  --color-myGrey: #393e46;
+  --color-myWhite: #eeeeee;
+}
+
+body {
+  @apply w-screen h-screen;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  * {
+    @apply border-myGrey;
+  }
+  body {
+    @apply bg-myBlack text-myWhite;
+  }
+}
+
+.debug {
+  border: 2px solid red !important;
+  & > * {
+    border: 2px solid green !important;
+    & > * {
+      border: 2px solid blue !important;
+      & > * {
+        border: 2px solid purple !important;
+        & > * {
+          border: 2px solid orange !important;
+          & > * {
+            border: 2px solid brown !important;
+            & > * {
+              border: 2px solid yellow !important;
+              & > * {
+                border: 2px solid pink !important;
+                & > * {
+                  border: 2px solid grey !important;
+                  & > * {
+                    border: 2px solid black !important;
+                    & > * {
+                      border: 2px solid white !important;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.ant-table-wrapper {
+  height: 100%;
+
+  .ant-spin-nested-loading {
+    height: 100%;
+
+    .ant-spin-container {
+      height: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+
+      .ant-table {
+        flex: auto;
+        overflow: hidden;
+
+        .ant-table-container {
+          height: 100%;
+          display: flex;
+          flex-flow: column nowrap;
+
+          .ant-table-header {
+            flex: none;
+          }
+
+          .ant-table-body {
+            flex: auto;
+            overflow: scroll;
+          }
+        }
+      }
+
+      .ant-table-pagination {
+        flex: none;
+      }
+    }
+  }
+}
