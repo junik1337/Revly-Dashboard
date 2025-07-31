@@ -7,7 +7,7 @@ import {
   ShopOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, ConfigProvider, Layout, Menu } from "antd";
+import { Button, ConfigProvider, Layout, Menu, App } from "antd";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
@@ -77,76 +77,79 @@ const AppLayoutProvider: React.FC<{ children: React.ReactNode }> = ({
         },
       }}
     >
-      <Layout className="h-screen w-screen">
-        <Sider
-          trigger={null}
-          collapsible
-          collapsed={collapsed}
-          style={{ backgroundColor: "var(--color-myGrey)" }}
-        >
-          <Link href="/">
-            <Image
-              src="https://cdn.prod.website-files.com/66be4630db3d6b1bfd791b23/66be5673f24147259459348a_Logo.svg"
-              width={70}
-              height={70}
-              alt="logo"
-              style={{
-                margin: "10px",
-                marginLeft: "10px",
-                marginBottom: "50px",
-              }}
-            />
-          </Link>
+      <App>
+        <Layout className="h-screen w-screen">
+          <Sider
+            trigger={null}
+            collapsible
+            collapsed={collapsed}
+            style={{ backgroundColor: "var(--color-myGrey)" }}
+          >
+            <Link href="/">
+              <Image
+                src="https://cdn.prod.website-files.com/66be4630db3d6b1bfd791b23/66be5673f24147259459348a_Logo.svg"
+                width={70}
+                height={70}
+                className="w-auto h-auto"
+                alt="logo"
+                style={{
+                  margin: "10px",
+                  marginLeft: "10px",
+                  marginBottom: "50px",
+                }}
+              />
+            </Link>
 
-          <Menu
-            style={{
-              backgroundColor: "var(--color-myGrey)",
-            }}
-            className="font-semibold"
-            mode="inline"
-            defaultSelectedKeys={[pathname]}
-            onClick={(e) => HandleClick(e.key)}
-            items={[
-              {
-                key: "/vendors",
-                icon: <ShopOutlined />,
-                label: "Vendors",
-              },
-              {
-                key: "/users",
-                icon: <UserOutlined />,
-                label: "Users",
-              },
-            ]}
-          />
-        </Sider>
-        <Layout style={{ backgroundColor: "var(--color-myBlack)" }}>
-          <Header
-            style={{ padding: 0, backgroundColor: "var(--color-myGrey)" }}
-          >
-            <Button
-              type="text"
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
+            <Menu
               style={{
-                fontSize: "16px",
-                width: 64,
-                height: 64,
-                color: "var(--color-myWhite)",
+                backgroundColor: "var(--color-myGrey)",
               }}
+              className="font-semibold"
+              mode="inline"
+              defaultSelectedKeys={[pathname]}
+              onClick={(e) => HandleClick(e.key)}
+              items={[
+                {
+                  key: "/vendors",
+                  icon: <ShopOutlined />,
+                  label: "Vendors",
+                },
+                {
+                  key: "/users",
+                  icon: <UserOutlined />,
+                  label: "Users",
+                },
+              ]}
             />
-          </Header>
-          <Content
-            style={{
-              margin: "24px 16px",
-              padding: 24,
-              height: "100%",
-            }}
-          >
-            {children}
-          </Content>
+          </Sider>
+          <Layout style={{ backgroundColor: "var(--color-myBlack)" }}>
+            <Header
+              style={{ padding: 0, backgroundColor: "var(--color-myGrey)" }}
+            >
+              <Button
+                type="text"
+                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                onClick={() => setCollapsed(!collapsed)}
+                style={{
+                  fontSize: "16px",
+                  width: 64,
+                  height: 64,
+                  color: "var(--color-myWhite)",
+                }}
+              />
+            </Header>
+            <Content
+              style={{
+                margin: "24px 16px",
+                padding: 24,
+                height: "100%",
+              }}
+            >
+              {children}
+            </Content>
+          </Layout>
         </Layout>
-      </Layout>
+      </App>
     </ConfigProvider>
   );
 };

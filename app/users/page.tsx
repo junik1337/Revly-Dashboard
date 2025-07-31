@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Switch, Table, Tag, message } from "antd";
+import { Button, Switch, Table, Tag, App } from "antd";
 import { getUsers, updateUser } from "@/lib/utils";
 import useSWR, { mutate } from "swr";
 import { User } from "@/types";
@@ -10,6 +10,7 @@ const { Column } = Table;
 
 const UsersPage = () => {
   const { data, isLoading, error } = useSWR("users", getUsers);
+  const { message } = App.useApp();
 
   const handleStatusChange = async (record: User, checked: boolean) => {
     try {
@@ -79,20 +80,18 @@ const UsersPage = () => {
           title="Is active"
           dataIndex="isActive"
           key="isActive"
-          render={(is_active: boolean) => (
+          render={(isActive: boolean) => (
             <Tag
               style={{
-                backgroundColor: is_active
+                backgroundColor: isActive
                   ? "var(--color-green-500)"
-                  : "var(--color-myWhite)",
-                color: is_active
-                  ? "var(--color-white)"
                   : "var(--color-red-500)",
+                color: "var(--color-myWhite)",
                 border: "none",
-                fontWeight: is_active ? 600 : 500,
+                fontWeight: 700,
               }}
             >
-              {is_active ? "Active" : "Inactive"}
+              {isActive ? "Active" : "Inactive"}
             </Tag>
           )}
         />

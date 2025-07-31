@@ -21,10 +21,6 @@ body {
   @apply w-screen h-screen;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
 @layer base {
   * {
     @apply border-myGrey;
