@@ -38,8 +38,11 @@ const VendorsPage = () => {
         dataSource={data}
         rowKey="id"
         className="h-full"
-        scroll={{ y: "100vh" }}
+        scroll={{ y: "50vh", x: "1000px" }}
         loading={isLoading}
+        pagination={{
+          pageSize: 10,
+        }}
       >
         <Column
           title="Name"

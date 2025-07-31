@@ -79,7 +79,11 @@ const UsersPage = () => {
       <Table<User>
         dataSource={data}
         className="h-full"
+        scroll={{ y: "50vh", x: "1500px" }}
         loading={isLoading}
+        pagination={{
+          pageSize: 10,
+        }}
         rowKey="id"
       >
         <Column
