@@ -76,113 +76,114 @@ const UsersPage = () => {
         </h6>
       </div>
 
-      <Table<User>
-        dataSource={data}
-        className="h-full"
-        scroll={{ y: "50vh", x: "1500px" }}
-        loading={isLoading}
-        pagination={{
-          pageSize: 10,
-        }}
-        rowKey="id"
-      >
-        <Column
-          title="Email"
-          dataIndex="email"
-          key="email"
-        />
-        <Column
-          title="Display name"
-          dataIndex="displayName"
-          key="displayName"
-          render={(displayName: string, record: User) => (
-            <Text
-              editable={{
-                text: displayName,
-                onChange: (value) => handleDisplayNameEdit(value, record),
-                tooltip: "Click to edit",
-              }}
-              style={{
-                color: "var(--color-myWhite)",
-                fontSize: "14px",
-              }}
-            >
-              {displayName}
-            </Text>
-          )}
-        />
-        <Column
-          title="Is active"
-          dataIndex="isActive"
-          key="isActive"
-          render={(isActive: boolean, record: User) => (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "12px",
-              }}
-              className="flex items-center justify-between"
-            >
-              <Tag
+      <div className="max-w-[1920px] mx-auto">
+        <Table<User>
+          dataSource={data}
+          className="h-full"
+          loading={isLoading}
+          rowKey="id"
+          scroll={{ y: "50vh", x: "1200px" }}
+          pagination={{
+            pageSize: 10,
+          }}
+          tableLayout="auto"
+        >
+          <Column
+            title="Email"
+            dataIndex="email"
+            key="email"
+            width={170}
+          />
+          <Column
+            title="Display name"
+            dataIndex="displayName"
+            key="displayName"
+            width={150}
+            render={(displayName: string, record: User) => (
+              <Text
+                editable={{
+                  text: displayName,
+                  onChange: (value) => handleDisplayNameEdit(value, record),
+                  tooltip: "Click to edit",
+                }}
                 style={{
-                  backgroundColor: isActive
-                    ? "var(--color-green-500)"
-                    : "var(--color-red-500)",
                   color: "var(--color-myWhite)",
-                  border: "none",
-                  fontWeight: 700,
+                  fontSize: "14px",
                 }}
               >
-                {isActive ? "Active" : "Inactive"}
-              </Tag>
-              <Switch
-                checked={isActive}
-                onChange={(checked) => handleStatusChange(record, checked)}
-              />
-            </div>
-          )}
-        />
-        <Column
-          title="List of vendors"
-          dataIndex="vendors"
-          key="vendors"
-          render={(vendors: { id: string; displayName: string }[]) => (
-            <div style={{ maxWidth: 420 }}>
-              {vendors &&
-                vendors.map((vendor) => (
-                  <Tag
-                    key={vendor.id}
-                    style={{
-                      backgroundColor: "var(--color-myViolet)",
-                      color: "white",
-                      border: "none",
-                      marginBottom: 4,
-                      marginRight: 4,
-                      fontWeight: 600,
-                    }}
-                  >
-                    {vendor.displayName}
-                  </Tag>
-                ))}
-            </div>
-          )}
-        />
-        <Column
-          title="Created at"
-          dataIndex="createdAt"
-          key="createdAt"
-          render={(date: string) => (
-            <span style={{ color: "var(--color-myWhite)" }}>
-              {new Date(date).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </span>
-          )}
-        />
-      </Table>
+                {displayName}
+              </Text>
+            )}
+          />
+          <Column
+            title="Is active"
+            dataIndex="isActive"
+            key="isActive"
+            width={130}
+            render={(isActive: boolean, record: User) => (
+              <div className="w-full flex items-center justify-between">
+                <Switch
+                  checked={isActive}
+                  onChange={(checked) => handleStatusChange(record, checked)}
+                />
+                <Tag
+                  style={{
+                    backgroundColor: isActive
+                      ? "var(--color-green-500)"
+                      : "var(--color-red-500)",
+                    color: "var(--color-myWhite)",
+                    border: "none",
+                    fontWeight: 700,
+                  }}
+                >
+                  {isActive ? "Active" : "Inactive"}
+                </Tag>
+              </div>
+            )}
+          />
+          <Column
+            title="List of vendors"
+            dataIndex="vendors"
+            key="vendors"
+            width={250}
+            render={(vendors: { id: string; displayName: string }[]) => (
+              <div style={{ maxWidth: 420 }}>
+                {vendors &&
+                  vendors.map((vendor) => (
+                    <Tag
+                      key={vendor.id}
+                      style={{
+                        backgroundColor: "var(--color-myViolet)",
+                        color: "white",
+                        border: "none",
+                        marginBottom: 4,
+                        marginRight: 4,
+                        fontWeight: 600,
+                      }}
+                    >
+                      {vendor.displayName}
+                    </Tag>
+                  ))}
+              </div>
+            )}
+          />
+          <Column
+            title="Created at"
+            dataIndex="createdAt"
+            key="createdAt"
+            width={100}
+            render={(date: string) => (
+              <span style={{ color: "var(--color-myWhite)" }}>
+                {new Date(date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </span>
+            )}
+          />
+        </Table>
+      </div>
     </div>
   );
 };
