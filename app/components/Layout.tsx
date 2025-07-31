@@ -67,6 +67,13 @@ const AppLayoutProvider: React.FC<{ children: React.ReactNode }> = ({
             colorText: "var(--color-myBlack)",
             colorBorder: "var(--color-myBlack)",
           },
+          Spin: {
+            colorPrimary: "var(--color-myViolet)",
+            colorPrimaryHover: "var(--color-myViolet)",
+            colorPrimaryActive: "var(--color-myViolet)",
+            colorBgContainer: "var(--color-myWhite)",
+            colorText: "var(--color-myBlack)",
+          },
         },
       }}
     >
