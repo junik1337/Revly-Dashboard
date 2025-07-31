@@ -55,12 +55,12 @@ const VendorsPage = () => {
           key="coordinates"
           render={(record: Vendor) => (
             <a
-              href={`https://www.google.com/maps?q=${record.longitude},${record.latitude}`}
+              href={`https://www.google.com/maps?q=${record.latitude},${record.longitude}`}
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: "var(--color-myViolet)" }}
             >
-              {record.longitude}, {record.latitude}
+              {record.latitude}, {record.longitude}
             </a>
           )}
         />

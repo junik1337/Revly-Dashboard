@@ -62,7 +62,7 @@ async function seed() {
         .onConflictDoNothing();
     }
 
-    // 4. Seed User-Vendor relationships (Example: give user 1 access to all vendors)
+    // 4. Seed User-Vendor relationships
     console.log("Seeding user-vendor relationships...");
     const allVendors = await db.select().from(vendors);
     for (const vendor of allVendors) {
