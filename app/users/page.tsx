@@ -80,19 +80,32 @@ const UsersPage = () => {
           title="Is active"
           dataIndex="isActive"
           key="isActive"
-          render={(isActive: boolean) => (
-            <Tag
+          render={(isActive: boolean, record: User) => (
+            <div
               style={{
-                backgroundColor: isActive
-                  ? "var(--color-green-500)"
-                  : "var(--color-red-500)",
-                color: "var(--color-myWhite)",
-                border: "none",
-                fontWeight: 700,
+                display: "flex",
+                alignItems: "center",
+                gap: "12px",
               }}
+              className="flex items-center justify-between"
             >
-              {isActive ? "Active" : "Inactive"}
-            </Tag>
+              <Tag
+                style={{
+                  backgroundColor: isActive
+                    ? "var(--color-green-500)"
+                    : "var(--color-red-500)",
+                  color: "var(--color-myWhite)",
+                  border: "none",
+                  fontWeight: 700,
+                }}
+              >
+                {isActive ? "Active" : "Inactive"}
+              </Tag>
+              <Switch
+                checked={isActive}
+                onChange={(checked) => handleStatusChange(record, checked)}
+              />
+            </div>
           )}
         />
         <Column
@@ -132,16 +145,6 @@ const UsersPage = () => {
                 day: "numeric",
               })}
             </span>
-          )}
-        />
-        <Column
-          title="Action"
-          key="action"
-          render={(record: User) => (
-            <Switch
-              checked={record.isActive}
-              onChange={(checked) => handleStatusChange(record, checked)}
-            />
           )}
         />
       </Table>
