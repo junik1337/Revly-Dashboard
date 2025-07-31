@@ -115,32 +115,7 @@ const UsersPage = () => {
               </Text>
             )}
           />
-          <Column
-            title="Is active"
-            dataIndex="isActive"
-            key="isActive"
-            width={130}
-            render={(isActive: boolean, record: User) => (
-              <div className="w-full flex items-center justify-between">
-                <Switch
-                  checked={isActive}
-                  onChange={(checked) => handleStatusChange(record, checked)}
-                />
-                <Tag
-                  style={{
-                    backgroundColor: isActive
-                      ? "var(--color-green-500)"
-                      : "var(--color-red-500)",
-                    color: "var(--color-myWhite)",
-                    border: "none",
-                    fontWeight: 700,
-                  }}
-                >
-                  {isActive ? "Active" : "Inactive"}
-                </Tag>
-              </div>
-            )}
-          />
+
           <Column
             title="List of vendors"
             dataIndex="vendors"
@@ -180,6 +155,32 @@ const UsersPage = () => {
                   day: "numeric",
                 })}
               </span>
+            )}
+          />
+          <Column
+            title="Is active"
+            dataIndex="isActive"
+            key="isActive"
+            width={130}
+            render={(isActive: boolean, record: User) => (
+              <div className="w-full flex items-center justify-between">
+                <Switch
+                  checked={isActive}
+                  onChange={(checked) => handleStatusChange(record, checked)}
+                />
+                {/* <Tag
+                  style={{
+                    backgroundColor: isActive
+                      ? "var(--color-green-500)"
+                      : "var(--color-red-500)",
+                    color: "var(--color-myWhite)",
+                    border: "none",
+                    fontWeight: 700,
+                  }}
+                >
+                  {isActive ? "Active" : "Inactive"}
+                </Tag> */}
+              </div>
             )}
           />
         </Table>

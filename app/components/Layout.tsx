@@ -110,9 +110,10 @@ const AppLayoutProvider: React.FC<{ children: React.ReactNode }> = ({
             rowHoverBg: "var(--color-myBlack)",
           },
           Switch: {
-            colorBgBase: "var(--color-myGrey)",
-            colorPrimary: "var(--color-myViolet)",
-            colorPrimaryHover: "var(--color-myViolet)",
+            colorPrimary: "var(--color-green-500)",
+            colorPrimaryHover: "var(--color-green-500)",
+            colorTextQuaternary: "var(--color-red-500)",
+            colorTextTertiary: "var(--color-red-500)",
           },
           Pagination: {
             colorPrimary: "var(--color-myViolet)",
