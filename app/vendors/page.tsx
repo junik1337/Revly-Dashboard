@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Table } from "antd";
+import { Table } from "antd";
 import { Vendor } from "@/types";
 import useSWR from "swr";
 import { getVendors } from "@/lib/utils";
@@ -16,27 +16,23 @@ const VendorsPage = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center">
-        <div>
-          <h1
-            style={{
-              fontSize: "2.5rem",
-              fontWeight: "bold",
-              color: "var(--color-myWhite)",
-              marginLeft: "0",
-            }}
-          >
-            Vendors
-          </h1>
-          <h6
-            style={{ marginBottom: "2rem" }}
-            className="text-myWhite"
-          >
-            Manage restaurant locations and their details.
-          </h6>
-        </div>
-
-        <Button disabled>Add vendor</Button>
+      <div className="flex flex-col items-center md:items-start">
+        <h1
+          style={{
+            fontSize: "2.5rem",
+            fontWeight: "bold",
+            color: "var(--color-myWhite)",
+            marginLeft: "0",
+          }}
+        >
+          Vendors
+        </h1>
+        <h6
+          style={{ marginBottom: "2rem" }}
+          className="text-myWhite"
+        >
+          Manage restaurant locations and their details.
+        </h6>
       </div>
       <Table<Vendor>
         dataSource={data}

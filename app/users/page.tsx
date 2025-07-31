@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Button, Switch, Table, Tag, App, Typography } from "antd";
+import { Switch, Table, Tag, App, Typography } from "antd";
 import { getUsers, updateUser, updateUserDisplayName } from "@/lib/utils";
 import useSWR, { mutate } from "swr";
 import { User } from "@/types";
@@ -57,28 +57,25 @@ const UsersPage = () => {
 
   return (
     <div>
-      <div className="flex justify-between items-center">
-        <div>
-          <h1
-            style={{
-              fontSize: "2.5rem",
-              fontWeight: "bold",
-              color: "var(--color-myWhite)",
-              marginLeft: "0",
-            }}
-          >
-            Users
-          </h1>
-          <h6
-            style={{ marginBottom: "2rem" }}
-            className="text-myWhite"
-          >
-            Manage and monitor users&apos;s actions.
-          </h6>
-        </div>
-
-        <Button disabled>Add user</Button>
+      <div className="flex flex-col items-center md:items-start">
+        <h1
+          style={{
+            fontSize: "2.5rem",
+            fontWeight: "bold",
+            color: "var(--color-myWhite)",
+            marginLeft: "0",
+          }}
+        >
+          Users
+        </h1>
+        <h6
+          style={{ marginBottom: "2rem" }}
+          className="text-myWhite"
+        >
+          Manage and monitor users&apos;s actions.
+        </h6>
       </div>
+
       <Table<User>
         dataSource={data}
         className="h-full"
