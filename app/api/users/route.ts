@@ -53,14 +53,40 @@ export async function GET() {
 export async function PUT(request: Request) {
   try {
     const body = await request.json();
-    const { userId, isActive } = body;
+    const { userId, isActive, displayName } = body;
 
-    // Validate required fields
-    if (userId === undefined || isActive === undefined) {
+    // Always require userId
+    if (userId === undefined) {
       return NextResponse.json(
-        { error: "userId and isActive are required" },
+        { error: "userId is required" },
         { status: 400 }
       );
+    }
+
+    if (displayName !== undefined) {
+      // Validate display name
+      if (typeof displayName !== "string" || displayName.trim() === "") {
+        return NextResponse.json(
+          { error: "displayName must be a non-empty string" },
+          { status: 400 }
+        );
+      }
+
+      // Update the user's display name
+      const updatedUser = await db
+        .update(users)
+        .set({ displayName: displayName.trim() })
+        .where(eq(users.id, userId))
+        .returning();
+
+      if (updatedUser.length === 0) {
+        return NextResponse.json({ error: "User not found" }, { status: 404 });
+      }
+
+      return NextResponse.json({
+        message: "Display name updated successfully",
+        user: updatedUser[0],
+      });
     }
 
     // Validate isActive is a boolean

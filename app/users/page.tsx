@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { Button, Switch, Table, Tag, App } from "antd";
-import { getUsers, updateUser } from "@/lib/utils";
+import { Button, Switch, Table, Tag, App, Typography } from "antd";
+import { getUsers, updateUser, updateUserDisplayName } from "@/lib/utils";
 import useSWR, { mutate } from "swr";
 import { User } from "@/types";
 
@@ -11,6 +11,7 @@ const { Column } = Table;
 const UsersPage = () => {
   const { data, isLoading, error } = useSWR("users", getUsers);
   const { message } = App.useApp();
+  const { Text } = Typography;
 
   const handleStatusChange = async (record: User, checked: boolean) => {
     try {
@@ -29,6 +30,24 @@ const UsersPage = () => {
         }. Please try again.`
       );
       console.error("Error updating user status:", error);
+    }
+  };
+
+  const handleDisplayNameEdit = async (value: string, record: User) => {
+    if (value.trim() === "") {
+      message.error("Display name cannot be empty");
+      return false;
+    }
+
+    try {
+      await updateUserDisplayName(record.id.toString(), value.trim());
+      mutate("users");
+      message.success("Display name updated successfully!");
+      return true;
+    } catch (error) {
+      message.error("Failed to update display name. Please try again.");
+      console.error("Error updating display name:", error);
+      return false;
     }
   };
 
@@ -75,6 +94,21 @@ const UsersPage = () => {
           title="Display name"
           dataIndex="displayName"
           key="displayName"
+          render={(displayName: string, record: User) => (
+            <Text
+              editable={{
+                text: displayName,
+                onChange: (value) => handleDisplayNameEdit(value, record),
+                tooltip: "Click to edit",
+              }}
+              style={{
+                color: "var(--color-myWhite)",
+                fontSize: "14px",
+              }}
+            >
+              {displayName}
+            </Text>
+          )}
         />
         <Column
           title="Is active"
